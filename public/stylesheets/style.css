@@ -1,8 +1,16 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
+* { margin: 0px; padding: 0px; }
+body { font-family: "微软雅黑"; font-size: 14px; line-height: 24px; }
+ol, ul, li { list-style-type: none; }
+header { -webkit-border-radius: 10px; border: 1px solid #CCC; width: 700px; height: 60px; margin: 0px auto; position: relative; }
+header h1 { font-size: 30px; line-height: 50px; color: #FF0; text-align: center; text-shadow: 5px 2px 6px #000 }
+#wap { width: 700px; height: 1%; overflow: hide; margin: 0px auto; }
+.list { border-bottom: 1px dotted #CCC; float: left; width: 330px; height: 124px; overflow: hidden; padding: 10px; }
+.list dt { float: left; width: 130px; }
+.list dt img { border: 1px solid #FF0; padding: 1px; }
+.list dd { line-height: 30px; float: left; width: 200px; }
 
-a {
-  color: #00B7FF;
-}
+
+
+#btnAdd { position: absolute; right: 10px; top: 30px; }
+#formData { background: #FFF; -webkit-border-radius: 10px; border: 1px solid #CCC; width: 300px; position: absolute; padding: 10px; }
+#formData div { text-align: center; }
