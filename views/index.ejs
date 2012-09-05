@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>皇帝名号</title>
+    <link href="/stylesheets/style.css" rel="stylesheet">
+    <script type="text/javascript" src="http://www.china.com.cn/jquery-1.7.min.js"></script>
+    <script src="/js/show.js"></script>
+</head>
+<body>
+<header>
+    <h1>皇帝名号</h1>
+    <div id="btnAdd"><button type="button" id="addUserButton">添加</button></div>
+</header>
+<div id="wap">
+    <% if (list.length) { %>
+    <% list.forEach(function(nh){ %>
+    <dl class="list">
+        <dt><img src="/images/<%= nh.tuxiang %>" width="120" height="120" /></dt>
+        <dd>
+            <p>姓名：<%= nh.userName %></p>
+            <p>庙号：<%= nh.miaohao %></p>
+            <p>年号：<%= nh.shihao %></p>
+            <p>谥号：<%= nh.nianhao %></p>
+        </dd>
+    </dl>
+    <% }) %>
+    <% } %>
+</div>
+<form id="formData" method="post" enctype="multipart/form-data" action="add">
+    <table width="300" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="100">姓名</td>
+            <td width="200"><input type="text" name="userName1"></td>
+        </tr>
+        <tr>
+            <td>庙号</td>
+            <td><input type="text" name="userName2"></td>
+        </tr>
+        <tr>
+            <td>谥号</td>
+            <td><input type="text" name="userName3"></td>
+        </tr>
+        <tr>
+            <td>年号</td>
+            <td><input type="text" name="userName4"></td>
+        </tr>
+        <tr>
+            <td>图像</td>
+            <td><input name="avatar" type="file"></td>
+        </tr>
+    </table>
+    <div><input type="submit" value="提交"><input type="button" value="关闭" id="btnClose"></div>
+</form>
+</body>
+</html>
