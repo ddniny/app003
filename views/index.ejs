@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title><%= title %></title>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                loadData();
+                $('#show').on('click', function() {
+                    $('#form').css('height', '300px');
+                });
+            });
+            
+            function loadData() {
+                $.get('/loadEmperor').done(function(data) {
+                    $('#list').html('');
+                    $.each(data, function(index, emperor) {
+                        var buf = [];
+                        buf.push('<li><div>');
+                        buf.push('<h4>' + emperor._id + '</h4>');
+                        buf.push('<h4>' + emperor.name + '</h4>');
+                        buf.push('<h4>' + emperor.posthumous + '</h4>');
+                        buf.push('<h4>' + emperor.temple + '</h4>');
+                        var rbuf = [];
+                        for (var r in emperor.reign) {
+                            rbuf.push(emperor.reign[r]);
+                        }
+                        buf.push('<h4>' + rbuf.join(',') + '</h4>');
+                        if (emperor.avatars) {
+                            buf.push('<div><img width="200" src="/loadImage/'+emperor.avatars+'" /></div>');
+                        } else {
+                            buf.push('<div><form action="/uploadImage" method="post" enctype="multipart/form-data"><input type="hidden" name="eid" value="'+emperor._id+'"/><input type="file" name="avatars" value="" /><input type="submit" name="submit" value="提交" /></form></div>');
+                        }
+                        buf.push('</div></li>');
+                        $('#list').prepend(buf.join(''));
+                    });
+                });
+            }
+            
+            function check(ele) {
+                $.post('/saveEmperor', {
+                    name: ele.name.value,
+                    temple: ele.temple.value,
+                    posthumous: ele.posthumous.value,
+                    reign: ele.reign.value
+                }).done(function(data) {
+                    loadData();
+                    $('#form').css('height', '0');
+                });
+                return false;
+            }
+        </script>
+    </head>
+    <body>
+        <div class="wrap">
+            <h1><%= title %></h1>
+            <input type="button" id="show" name="show" value="添加" />
+            <div id="form">
+                <form action="" onsubmit="return check(this); return false;">
+                    <input type="text" name="name" value="" required="required" placeholder="皇帝姓名" />
+                    <input type="text" name="temple" value="" required="required" placeholder="皇帝庙号" />
+                    <input type="text" name="posthumous" value="" required="required" placeholder="皇帝姓名" />
+                    <input type="text" name="reign" value="" required="required" placeholder="年号，用半角逗号分割" />
+                    <input type="submit" id="submit" name="submit" value="提交" />
+                </form>
+            </div>
+            <ul id="list" class="list"></ul>
+            <!--
+            <div>
+                <form action="/saveEmperor" method="post">
+                    <input type="text" name="name" value="" required="required" placeholder="皇帝姓名" />
+                    <input type="text" name="temple" value="" required="required" placeholder="皇帝庙号" />
+                    <input type="text" name="posthumous" value="" required="required" placeholder="皇帝姓名" />
+                    <input type="text" name="reign" value="" required="required" placeholder="年号，用半角逗号分割" />
+                    <input type="submit" id="submit" name="submit" value="提交" />
+                </form>
+            </div>
+            <div>
+                <form action="/uploadImage" method="post" enctype="multipart/form-data">
+                    <input type="file" name="avatars" value="" />
+                    <input type="submit" name="submit" value="提交" />
+                </form>
+            </div>
+            -->
+        </div>
+    </body>
+</html>
