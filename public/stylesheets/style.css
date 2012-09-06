@@ -1,8 +1,32 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    margin: 0px auto;
 }
 
 a {
-  color: #00B7FF;
+    color: #00B7FF;
+}
+
+.adddiv {
+    /*position:relative;*/
+    position: absolute;
+    margin: 0px auto;
+    width: 500px;
+    padding: 5px;
+    text-align: center;
+    background: #e5eecc;
+    border: solid 1px #c3c3c3;
+    display: none;
+}
+
+.viewdiv {
+    position: absolute;
+    margin: 0px auto;
+    width: 500px;
+    padding: 5px;
+    text-align: center;
+    background: #FFF;
+    border: solid 1px #c3c3c3;
+    z-index: -1;
 }

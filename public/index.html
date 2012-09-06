@@ -1,0 +1,42 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="javascripts/jquery-1.8.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css"/>
+    <title>nodejs作业</title>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("a").click(function(){
+                $("div.adddiv").slideToggle();
+            });
+        });
+        $("button").click(function(){
+        $.get('/add', $("form").serializeArray()).done(function(data){
+            $("div").attr("display","none");
+//            $.each(data,function(id,ele){
+//                alert(ele.name);
+//            });
+            alert(data.name);
+        });
+        });
+    </script>
+</head>
+<body><a>{+添加}</a><br>
+<div class="viewdiv"><ta</div>
+<div class="adddiv">
+    <form action="/add" method="post">
+        姓名：<input type="text" name="name" required="required" placeholder="请输入姓名">
+        <br>
+        庙号：<input type="text" name="miaohao" required="required" placeholder="请输入庙号">
+        <br>
+        谥号：<input type="text" name="yuhao" required="required" placeholder="请输入谥号">
+        <br>
+        年号：<input type="text" name="nianhao" required="required" placeholder="请输入年号">
+        <br>
+        <input type="button" name="submit" value="submit">
+    </form>
+</div>
+
+</body>
+</html>
