@@ -48,6 +48,7 @@ app.post('/add',function(req, res){
     } else {
         imgType = "gif";
     }
+    console.log(imgType);
     var date = new Date();
     var format_name = Date.UTC(date.getFullYear(), date.getMonth(), date.getDay(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()) + "." + imgType;
     var target_path = './public/images/' + format_name;
